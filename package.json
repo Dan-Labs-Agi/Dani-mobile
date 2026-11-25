@@ -1,0 +1,61 @@
+{
+  "name": "dani-mobile",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.2",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "workspaces": {
+    "packages": ["apps/*", "packages/*"],
+    "catalog": {
+      "@noble/hashes": "2.4.0",
+      "@norbert_bodziony/bloub": "0.7.0",
+      "@solidjs/web": "2.0.3",
+      "@speed-highlight/core": "1.2.24",
+      "@cloudflare/workers-types": "5.20261023.1",
+      "@types/node": "24.19.2",
+      "effect": "4.0.6",
+      "fflate": "0.8.3",
+      "katex": "0.19.0",
+      "marked": "18.1.1",
+      "mermaid": "12.2.0",
+      "pdfjs-dist": "6.4.299",
+      "tailwindcss": "4.3.3",
+      "typescript": "7.0.2",
+      "vitest": "4.1.12",
+      "wrangler": "4.152.0",
+      "zod": "4.6.7"
+    }
+  },
+  "scripts": {
+    "mobile": "bun run --cwd apps/mobile start",
+    "mobile:go": "bun run --cwd apps/mobile start:go",
+    "mobile:go:tunnel": "bun run --cwd apps/mobile start:go:tunnel",
+    "mobile:android": "bun run --cwd apps/mobile android",
+    "mobile:ios": "bun run --cwd apps/mobile ios",
+    "mobile:ios:rocketsim": "bun run --cwd apps/mobile ios:rocketsim",
+    "updates:deploy": "bun run --cwd apps/mobile-updates deploy",
+    "updates:dev": "bun run --cwd apps/mobile-updates dev",
+    "mobile:lint": "bun run --cwd apps/mobile lint",
+    "typecheck:mobile": "bun run --cwd apps/mobile typecheck"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.13",
+    "tsrs": "0.16.0-ts7.1.0-dev.20260929"
+  },
+  "patchedDependencies": {
+    "expo@58.0.25": "patches/expo@58.0.25.patch",
+    "expo-splash-screen@58.0.14": "patches/expo-splash-screen@58.0.14.patch",
+    "react-native-keyboard-controller@1.22.7": "patches/react-native-keyboard-controller@1.22.7.patch",
+    "@react-native-masked-view/masked-view@0.3.2": "patches/@react-native-masked-view%2Fmasked-view@0.3.2.patch",
+    "react-native-reserved-regions@0.2.0": "patches/react-native-reserved-regions@0.2.0.patch",
+    "react-native-screens@4.30.1": "patches/react-native-screens@4.30.1.patch",
+    "react-native-reanimated@4.7.1": "patches/react-native-reanimated@4.7.1.patch",
+    "expo-widgets@58.0.28": "patches/expo-widgets@58.0.28.patch",
+    "react-native-worklets@0.13.0": "patches/react-native-worklets@0.13.0.patch",
+    "@expo/ui@58.0.28": "patches/@expo%2Fui@58.0.28.patch",
+    "expo-image@58.0.18": "patches/expo-image@58.0.18.patch",
+    "@openpanel/react-native@1.4.4": "patches/@openpanel%2Freact-native@1.4.4.patch"
+  }
+}

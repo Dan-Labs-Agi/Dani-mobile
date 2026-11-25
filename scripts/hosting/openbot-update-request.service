@@ -1,0 +1,9 @@
+[Unit]
+Description=Update dani-dex on request
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/dani-dex/hosted/openbot-hosted-update request
+TimeoutStartSec=45min

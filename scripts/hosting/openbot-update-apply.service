@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply a staged dani-dex update
+Before=openbot.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/dani-dex/hosted/openbot-hosted-update boot
+TimeoutStartSec=15min
+
+[Install]
+WantedBy=multi-user.target
