@@ -1,12 +1,13 @@
+import type { MobileTranslate } from "@openbot/i18n/mobile";
 import { Button, Typography } from "heroui-native";
 import { View } from "react-native";
 import { SettingsNote, SettingsSection } from "@/features/settings/components/settings-content";
 import { haptics } from "@/shared/lib/haptics";
-import { type MobileText, useText } from "@/shared/lib/text";
+import { useText } from "@/shared/lib/text";
 import type { GlassesState } from "../glasses-native";
 import type { GlassesController } from "../model/use-glasses";
 
-function statusText(t: MobileText, state: GlassesState | null): string {
+function statusText(t: MobileTranslate, state: GlassesState | null): string {
   if (!state?.attached) return t("mobile.settings.glasses.status.starting");
   if (state.glassesConnected && state.liveState === "ready") {
     return state.speaking
@@ -24,7 +25,7 @@ function statusText(t: MobileText, state: GlassesState | null): string {
   return state.running ? t("mobile.settings.glasses.status.looking") : t("mobile.settings.glasses.status.notConnected");
 }
 
-function buttonText(t: MobileText, state: GlassesState | null): string {
+function buttonText(t: MobileTranslate, state: GlassesState | null): string {
   if (state?.glassesConnected) return t("mobile.settings.glasses.disconnect");
   if (state?.running) return t("mobile.settings.glasses.stopLooking");
   return t("mobile.settings.glasses.connect");
