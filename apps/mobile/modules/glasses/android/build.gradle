@@ -1,0 +1,22 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'run.openbot'
+version = '1.0.0'
+
+android {
+  namespace "run.openbot.glasses"
+  defaultConfig {
+    versionCode 1
+    versionName '1.0.0'
+  }
+}
+
+dependencies {
+  // The WebSocket client of the Gemini Live session. React Native already brings OkHttp to the app,
+  // and Gradle uses the newest version in the graph.
+  implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+  testImplementation 'junit:junit:4.13.2'
+}

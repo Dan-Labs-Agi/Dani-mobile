@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <!-- Find and talk to the glasses. The app does not use Bluetooth to find the location. -->
+  <uses-permission
+    android:name="android.permission.BLUETOOTH_SCAN"
+    android:usesPermissionFlags="neverForLocation"
+    tools:targetApi="s" />
+  <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+  <!-- Gemini Live and the cloud apps -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <!-- The phone's microphone and speaker take over when the glasses are not connected. -->
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+  <!-- Timers, reminders and alarms. Without exact alarms, Android 13 and later fire them a little late. -->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+  <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+  <!-- The link to the glasses runs in the background while it is connected. -->
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+  <!-- The glasses are optional, so a phone without Bluetooth LE can still install the app. -->
+  <uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
+
+  <application>
+    <service
+      android:name="run.openbot.glasses.GlassesService"
+      android:exported="false"
+      android:foregroundServiceType="connectedDevice|microphone" />
+    <receiver android:name="run.openbot.glasses.AlertReceiver" android:exported="false" />
+    <receiver android:name="run.openbot.glasses.BootReceiver" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

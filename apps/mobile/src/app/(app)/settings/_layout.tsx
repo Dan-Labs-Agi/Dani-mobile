@@ -23,6 +23,7 @@ export default function SettingsLayout() {
       <Stack.Screen name="voice-server" options={{ title: t("mobile.settings.voice.server.title") }} />
       <Stack.Screen name="quick-actions" options={{ title: t("mobile.settings.quickActions.title") }} />
       <Stack.Screen name="shortcuts" options={{ title: t("mobile.settings.shortcuts.title") }} />
+      <Stack.Screen name="glasses" options={{ title: t("mobile.settings.glasses.title") }} />
       <Stack.Screen name="haptics" options={{ title: t("mobile.settings.feedback.haptics") }} />
       <Stack.Screen name="agents" options={{ title: t("mobile.settings.agents.title") }} />
       <Stack.Screen name="agent-defaults" options={{ title: t("mobile.settings.agents.title") }} />

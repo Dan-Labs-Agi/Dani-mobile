@@ -4,6 +4,7 @@ import Bell from "lucide-react-native/icons/bell";
 import Bot from "lucide-react-native/icons/bot";
 import CreditCard from "lucide-react-native/icons/credit-card";
 import Gift from "lucide-react-native/icons/gift";
+import Glasses from "lucide-react-native/icons/glasses";
 import Info from "lucide-react-native/icons/info";
 import Languages from "lucide-react-native/icons/languages";
 import Layers2 from "lucide-react-native/icons/layers-2";
@@ -19,6 +20,7 @@ import WandSparkles from "lucide-react-native/icons/wand-sparkles";
 import { useCallback } from "react";
 import { mobileUserName } from "@/features/auth/api/mobile-user-name";
 import { useMobileSession } from "@/features/auth/context/mobile-session-context";
+import { glassesSupported } from "@/features/glasses/glasses-native";
 import { CreditStar } from "@/features/settings/components/credit-star";
 import { SettingsContent, SettingsRow, SettingsSection } from "@/features/settings/components/settings-content";
 import { RowIcon } from "@/features/settings/components/settings-row-icon";
@@ -140,6 +142,13 @@ export function SettingsScreen() {
           </SettingsRow>
         ) : null}
       </SettingsSection>
+      {glassesSupported ? (
+        <SettingsSection>
+          <SettingsRow leading={<RowIcon icon={Glasses} />} onPress={() => router.push("/settings/glasses")}>
+            <Typography.Paragraph>{t("mobile.settings.glasses.title")}</Typography.Paragraph>
+          </SettingsRow>
+        </SettingsSection>
+      ) : null}
       <SettingsSection>
         <SettingsRow leading={<RowIcon icon={Shield} />} onPress={() => router.push("/settings/privacy")}>
           <Typography.Paragraph>{t("mobile.settings.privacy.title")}</Typography.Paragraph>
