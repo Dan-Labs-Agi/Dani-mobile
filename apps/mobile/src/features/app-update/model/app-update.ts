@@ -15,6 +15,7 @@ import { supportLog } from "@/features/support/model/support-log";
 import { devLatestAppVersion } from "@/shared/lib/dev-feature-overrides";
 import { currentAppVersion, useLatestAppVersion, useMobileFeaturesRefresh } from "@/shared/lib/mobile-features";
 import { isIOS } from "@/shared/lib/platform";
+import { DIRECT_APK_URL, useDirectLatestVersion } from "./direct-update";
 
 export type AppUpdate = { kind: "ready"; id: string } | { kind: "store"; id: string; version: string };
 
@@ -93,7 +94,9 @@ function downloadedUpdateId(update: Updates.UpdateInfo): string {
 export function useAppUpdate(): AppUpdate | null {
   const { session } = useMobileSession();
   const apiUrl = session?.apiUrl ?? null;
-  const latest = useLatestAppVersion(apiUrl ?? "");
+  const serverLatest = useLatestAppVersion(apiUrl ?? "");
+  const directLatest = useDirectLatestVersion();
+  const latest = directLatest ?? serverLatest;
   const { isUpdatePending, downloadedUpdate, availableUpdate } = Updates.useUpdates();
   const rollbackWaits = availableUpdate?.type === Updates.UpdateInfoType.ROLLBACK && !isUpdatePending;
   const dismissed = useDismissedAppUpdate((state) => (state.ready ? state.dismissed : undefined));
@@ -128,6 +131,10 @@ export async function installAppUpdate(update: AppUpdate, reloadColor: string): 
     await Updates.reloadAsync({
       reloadScreenOptions: { backgroundColor: reloadColor, fade: true, spinner: { enabled: false } },
     });
+    return;
+  }
+  if (!isIOS) {
+    await Linking.openURL(DIRECT_APK_URL);
     return;
   }
   await openStorePage();

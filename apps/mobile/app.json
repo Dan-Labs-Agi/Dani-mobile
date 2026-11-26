@@ -273,7 +273,7 @@
       "policy": "fingerprint"
     },
     "updates": {
-      "url": "https://updates.openbot.run/manifest",
+      "url": "https://updates.dani.danlab.dev/manifest",
       "codeSigningCertificate": "./certs/certificate.pem",
       "codeSigningMetadata": {
         "keyid": "main",
